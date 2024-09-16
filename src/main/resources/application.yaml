@@ -1,0 +1,27 @@
+server:
+  port: 8070
+
+spring:
+  application:
+    name: BANK-API-GATEWAY
+
+  main:
+    web-application-type: reactive
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8085/eureka
+
+  cloud:
+    gateway:
+      routes:
+        - id: BANK-AUTHENTICATION-SERVICE
+          uri: lb://BANK-AUTHENTICATION-SERVICE
+          predicates:
+            - Path=/bank/authentication/**
