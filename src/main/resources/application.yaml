@@ -8,6 +8,20 @@ spring:
   main:
     web-application-type: reactive
 
+  cloud:
+    gateway:
+      routes:
+        - id: BANK-AUTHENTICATION-SERVICE
+          uri: lb://BANK-AUTHENTICATION-SERVICE
+          predicates:
+            - Path=/bank/authentication/**
+
+        - id: BANK-BRANCH-DETAILS
+          uri: lb://BANK-BRANCH-DETAILS
+          predicates:
+            - Path=/bank/branch/**
+          filters:
+            - AuthenticationFilter
 
 eureka:
   instance:
@@ -17,11 +31,3 @@ eureka:
     register-with-eureka: true
     service-url:
       defaultZone: http://localhost:8085/eureka
-
-  cloud:
-    gateway:
-      routes:
-        - id: BANK-AUTHENTICATION-SERVICE
-          uri: lb://BANK-AUTHENTICATION-SERVICE
-          predicates:
-            - Path=/bank/authentication/**
