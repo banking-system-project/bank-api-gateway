@@ -30,4 +30,10 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
     service-url:
-      defaultZone: http://localhost:8085/eureka
+      defaultZone: ${EUREKA_SERVER_ADDRESS:http://localhost:8085/eureka}
+
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
