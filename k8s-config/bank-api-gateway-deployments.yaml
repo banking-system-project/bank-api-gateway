@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: bank-api-gateway-service
-          image: prithwi8972/bank-api-gateway-service:1.0
+          image: prithwi8972/bank-api-gateway:1.1.1
           resources:
             limits:
               memory: "900Mi"

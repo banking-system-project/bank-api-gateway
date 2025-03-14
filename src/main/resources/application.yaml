@@ -23,6 +23,11 @@ spring:
           filters:
             - AuthenticationFilter
 
+        - id: BANK-ACCOUNT-INFO
+          uri: lb://BANK-ACCOUNT-INFO
+          predicates:
+            - Path=/bank/account/info/**
+
 eureka:
   instance:
     prefer-ip-address: true
